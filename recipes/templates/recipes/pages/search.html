@@ -1,9 +1,8 @@
 {% extends "global/base.html" %}
 {% block title %}
-    Home | Hospedaje Vista Alegre
+    Search for {{ search_term }} | Hospedaje Vista Alegre
 {% endblock title %}
 {% block content %}
-   {% include "recipes/partials/messages.html" %}
     <div class="main-content main-content-list container">
         {% for recipe in recipes %}
             {% include "recipes/partials/recipe.html" %}

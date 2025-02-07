@@ -1,3 +1,5 @@
+<!-- htmlhint ignore meta-description -->
+<!-- htmlhint disable meta-keywords -->
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,16 +9,14 @@
             {% endblock title %}
         </title>
     </head>
-        <body>
-            {% include "recipes/partials/header.html" %}
-            {% include "recipes/partials/search.html" %}
-            <main class="main-content-container">
-                <div class="main-content main-content-list container">
-                    {% block content %}
-                    {% endblock content %}
-                </div>
-            </main>
-            {% include "recipes/partials/footer.html" %}
-        </body>
-    
+    <body>
+        {% include "recipes/partials/header.html" %}
+        {% include "recipes/partials/search.html" %}
+        <main class="main-content-container">
+            {% block content %}
+            {% endblock content %}
+            {% include "recipes/partials/pagination.html" %}
+        </main>
+        {% include "recipes/partials/footer.html" %}
+    </body>
 </html>
