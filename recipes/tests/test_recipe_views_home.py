@@ -58,3 +58,23 @@ class RecipeHomeViewsTest(RecipeTestBase):
         self.assertEqual(paginator.num_pages, 4)
         self.assertEqual(len(paginator.get_page(1)), 3)
         self.assertEqual(len(paginator.get_page(2)), 3)
+    # tres recetas por página
+    @patch('recipes.views.PER_PAGE', new=3)
+    def test_invalid_page_query_uses_page_one(self):
+        for i in range(12):
+            kwargs = {'slug': f'r{i}', 'author_data': {'username': f'u{i}'}}
+            self.make_recipe(**kwargs)
+        response = self.client.get(
+            reverse('recipes:home') + '?page=1A'
+            )
+        ...
+        self.assertEqual(
+            response.context['recipes'].number, 1
+            )
+        response = self.client.get(
+            reverse('recipes:home') + '?page=2'
+            )
+        ...
+        self.assertEqual(
+            response.context['recipes'].number, 2
+            )
