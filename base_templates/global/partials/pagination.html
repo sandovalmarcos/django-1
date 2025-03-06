@@ -1,22 +1,40 @@
 {% if recipes.has_other_pages %}
-    <div class="container pagination">
+    <nav role="navigation" aria-label="Pagination" class="container pagination">
         <div class="pagination-content">
             {% if pagination_range.first_page_out_of_range %}
-                <a href="?page=1{{ aditional_querystring }}" class="page-link page-item">1</a>
+                <a href="?page=1{{ aditional_querystring }}" aria-label="Go to page 1" class="page-link page-item">1</a>
                 <span class="page-item">...</span>
             {% endif %}
+
             {% for page in pagination_range.pagination %}
                 {% if page == pagination_range.current_page %}
-                    <span class="page-item current-page">{{ page }}</span>
+                    <a class="page-link page-item current-page"
+                       aria-label="Current page {{ page }}"
+                       aria-current="true"
+                       href="?page={{ page }}{{ aditional_querystring }}">
+                        {{ page }}
+                    </a>
                 {% else %}
-                    <a href="?page={{ page }}{{ aditional_querystring }}" class="page-link page-item">{{ page }}</a>
+                    <a 
+                    class="page-link page-item" 
+                    href="?page={{ page }}{{ aditional_querystring }}"
+                    aria-label="Go to page {{ page }}"
+                    >
+                        {{ page }}
+                    
+                    </a>
                 {% endif %}
             {% endfor %}
             {% if pagination_range.last_page_out_of_range %}
                 <span class="page-item">...</span>
-                <a href="?page={{ recipes.paginator.num_pages }}{{ aditional_querystring }}"
-                   class="page-link page-item">{{ recipes.paginator.num_pages }}</a>
+                <a 
+                class="page-link page-item"
+                aria-label="Go to page {{ pagination_range.total_pages }}"
+                href="?page={{ recipes.paginator.num_pages }}{{ aditional_querystring }}"
+                >  
+                   {{ pagination_range.total_pages }}
+                </a>
             {% endif %}
         </div>
-    </div>
+    </nav>
 {% endif %}

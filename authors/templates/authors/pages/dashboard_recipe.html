@@ -1,0 +1,36 @@
+{% extends 'global/base.html' %}
+{% block title %} Dashboard ({{ request.user.username }}) {% endblock title %}
+{% block content %}
+<div class="main-content center container">
+  <h2>Dashboard ({{ request.user.username }})</h2>
+  
+  {% include "global/partials/messages.html" %}
+  {% include "authors/partials/login_messages.html" %}
+  
+  <div class="left">
+    {% include "global/partials/form.html" %}
+  <!--
+  <div class="authors-dashboard-container">
+    asdad
+
+
+
+
+
+    <h3>Your recipes</h3>
+    <ul>
+    {% for recipe in recipes %}
+      <li>
+        <a href="#">{{ recipe.title }}</a>
+      </li>
+      {% empty %}
+        <li>
+          <p>You do not have recipes, please create one.</p>
+        </li> 
+    {% endfor %}
+    </ul>
+  </div>
+  -->
+  </div>
+</div>
+{% endblock content %}

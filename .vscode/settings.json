@@ -1,0 +1,5 @@
+{
+    "djlint.formatCss": true,
+    "djlint.formatJs": true,
+    "djlint.formatAttributeTemplateTags": true
+}

@@ -4,7 +4,7 @@ from django.http import Http404
 from django.db.models import Q
 # from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # from utils.recipes.factory import make_recipe
-from utils.recipes.pagination import make_pagination
+from utils.pagination import make_pagination
 from recipes.models import Recipe
 import os
 # from django.contrib import messages

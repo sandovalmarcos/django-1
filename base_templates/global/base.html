@@ -1,5 +1,6 @@
 <!-- htmlhint ignore meta-description -->
 <!-- htmlhint disable meta-keywords -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,5 +19,6 @@
             {% include "global/partials/pagination.html" %}
         </main>
         {% include "global/partials/footer.html" %}
+        <script src="{% static 'global/js/scripts.js' %}"></script>
     </body>
 </html>
