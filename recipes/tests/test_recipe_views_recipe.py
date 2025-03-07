@@ -2,25 +2,26 @@ from .test_recipe_base import RecipeTestBase
 from django.urls import reverse, resolve
 from recipes import views
 
+
 class RecipeViewsRecipeTest(RecipeTestBase):
     def test_recipe_recipe_view_function_is_correct(self):
         view = resolve(
             reverse('recipes:recipe', args=[1]))
-        self.assertIs(view.func, views.recipe)
-    
+        self.assertIs(view.func.view_class, views.RecipeDetailView)
+
     def test_recipe_recipe_view_returns_200_OK(self):
         self.make_recipe()
         response = self.client.get(
             reverse('recipes:recipe', args=[1])
         )
         self.assertEqual(response.status_code, 200)
-        
+
     def test_recipe_recipe_view_returns_404_if_no_recipes(self):
         response = self.client.get(
-            reverse('recipes:recipe', kwargs={'id': 1000})
+            reverse('recipes:recipe', kwargs={'pk': 1000})
         )
         self.assertEqual(response.status_code, 404)
-    
+
     def test_recipe_recipe_template_loads_correct_recipe(self):
         needed_title = 'Recipe Test'
         self.make_recipe(title=needed_title)
@@ -28,7 +29,7 @@ class RecipeViewsRecipeTest(RecipeTestBase):
             reverse(
                 'recipes:recipe',
                 kwargs={
-                    'id': 1
+                    'pk': 1
                     }
                 )
             )
@@ -39,14 +40,13 @@ class RecipeViewsRecipeTest(RecipeTestBase):
         """
         Test recipe is not published
         """
-        recipe =self.make_recipe(is_published=False)
+        recipe = self.make_recipe(is_published=False)
         response = self.client.get(
             reverse(
                 'recipes:recipe',
                 kwargs={
-                    'id': recipe.id
+                    'pk': recipe.id
                     }
                 )
             )
-        
         self.assertEqual(response.status_code, 404)

@@ -21,7 +21,7 @@ class AuthorRecipeForm(forms.ModelForm):
         widgets = {
             'cover': forms.FileInput(
                 attrs={
-                'class': 'span-2',
+                    'class': 'span-2',
                 }
             ),
             'servings_unit': forms.Select(
@@ -44,10 +44,10 @@ class AuthorRecipeForm(forms.ModelForm):
         cleaned = self.cleaned_data
 
         title = cleaned.get('title')
-        description = cleaned.get('description')   
+        description = cleaned.get('description')
         if title == description:
-            self._my_errors['title'].append('Title and description must be different')
-            self._my_errors['description'].append('Title and description must be different')    
+            self._my_errors['title'].append('Title and description must be different') # noqa E501
+            self._my_errors['description'].append('Title and description must be different') # noqa E501
         if self._my_errors:
             raise ValidationError(self._my_errors)
 
@@ -56,7 +56,7 @@ class AuthorRecipeForm(forms.ModelForm):
     def clean_title(self):
         title = self.cleaned_data.get('title')
         if len(title) < 5:
-            self._my_errors['title'].append('Title must have at least 5 characters')
+            self._my_errors['title'].append('Title must have at least 5 characters') # noqa E501
         return title
 
     def clean_preparation_time(self):

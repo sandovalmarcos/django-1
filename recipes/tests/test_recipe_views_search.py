@@ -8,7 +8,7 @@ class RecipeSearchViewTest(RecipeTestBase):
         view = resolve(
             reverse('recipes:search')
         )
-        self.assertIs(view.func, views.search)
+        self.assertIs(view.func.view_class, views.RecipeListViewSearch)
 
     def test_search_view_template_loads_correct_template(self):
         response = self.client.get(
