@@ -44,10 +44,10 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -153,3 +153,7 @@ MESSAGE_TAGS = {
 }
 CSRF_COOKIE_SECURE = True   # Solo si usas HTTPS
 SESSION_COOKIE_SECURE = True
+CSRF_TRUSTED_ORIGINS = [
+    'https://cursodjango.parentesisboutique.cl',
+    '127.0.0.1',
+]
