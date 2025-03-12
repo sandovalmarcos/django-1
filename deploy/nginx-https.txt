@@ -1,7 +1,7 @@
 # https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/
 #
 # REPLACES
-# 34.176.212.27 = Replace with your domain
+# cursodjango.parentesisboutique.cl = Replace with your domain
 # /home/marcos/app_repo = Replace with the path to the folder for the project
 # /home/marcos/app_repo/static = Replace with the path to the folder for static files
 # /home/marcos/app_repo/media = Replace with the path to the folder for media files
@@ -12,21 +12,21 @@
 # sudo apt install nginx certbot python3-certbot-nginx -y
 # sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 4096
 # sudo systemctl stop nginx
-# sudo certbot certonly --standalone -d 34.176.212.27
+# sudo certbot certonly --standalone -d cursodjango.parentesisboutique.cl
 # sudo chmod -R 755 /home/marcos/app_repo
-# sudo nano /etc/nginx/sites-available/34.176.212.27
+# sudo nano /etc/nginx/sites-available/cursodjango.parentesisboutique.cl
 # Add contents of this file
-# sudo ln -s /etc/nginx/sites-available/34.176.212.27 /etc/nginx/sites-enabled/34.176.212.27
+# sudo ln -s /etc/nginx/sites-available/cursodjango.parentesisboutique.cl /etc/nginx/sites-enabled/cursodjango.parentesisboutique.cl
 #
 # Set timezone
 # List - timedatectl list-timezones
-# sudo timedatectl set-timezone America/Sao_Paulo
+# sudo timedatectl set-timezone America/Santiago
 #
 # HTTP
 server {
   listen 80;
   listen [::]:80;
-  server_name 34.176.212.27;
+  server_name cursodjango.parentesisboutique.cl;
   return 301 https://$host$request_uri;
 }
 
@@ -35,11 +35,11 @@ server {
   listen 443 ssl http2;
   listen [::]:443 ssl http2;
 
-  server_name 34.176.212.27;
+  server_name cursodjango.parentesisboutique.cl;
 
-  ssl_certificate /etc/letsencrypt/live/34.176.212.27/fullchain.pem;
-  ssl_certificate_key /etc/letsencrypt/live/34.176.212.27/privkey.pem;
-  ssl_trusted_certificate /etc/letsencrypt/live/34.176.212.27/chain.pem;
+  ssl_certificate /etc/letsencrypt/live/cursodjango.parentesisboutique.cl/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/cursodjango.parentesisboutique.cl/privkey.pem;
+  ssl_trusted_certificate /etc/letsencrypt/live/cursodjango.parentesisboutique.cl/chain.pem;
 
   # Improve HTTPS performance with session resumption
   ssl_session_cache shared:SSL:10m;
@@ -124,6 +124,6 @@ server {
     image/svg+xml;
 
   access_log off;
-  #access_log  /var/log/nginx/34.176.212.27-access.log;
-  error_log   /var/log/nginx/34.176.212.27-error.log;
+  #access_log  /var/log/nginx/cursodjango.parentesisboutique.cl-access.log;
+  error_log   /var/log/nginx/cursodjango.parentesisboutique.cl-error.log;
 }

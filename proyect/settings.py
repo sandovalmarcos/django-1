@@ -25,8 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'INSECURE')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if os.environ.get('DEBUG') == '1' else False
 
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = ['cursodjango.parentesisboutique.cl', '127.0.0.1']
 
 # Application definition
 
@@ -39,16 +38,19 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'recipes',
     'authors',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'proyect.urls'
@@ -118,6 +120,10 @@ USE_I18N = True
 
 USE_TZ = True
 
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
@@ -144,3 +150,5 @@ MESSAGE_TAGS = {
     constants.INFO: 'message-info',
     constants.WARNING: 'message-warning',
 }
+CSRF_COOKIE_SECURE = True   # Solo si usas HTTPS
+SESSION_COOKIE_SECURE = True
